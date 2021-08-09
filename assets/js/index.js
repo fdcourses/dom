@@ -14,3 +14,9 @@
 // const arr = [...coolerPars];
 
 // найти h1, img и span в параграфе
+
+const h1 = document.querySelector('.main > h1');
+
+const img = document.querySelector('.main > img');
+
+const span = document.querySelector('span');
