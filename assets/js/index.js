@@ -1,13 +1,16 @@
 'use strict';
 
-// нашли кнопки
-const [btn] = document.getElementsByTagName('button');
+// const parsCol = document.getElementsByTagName('p');
 
-// создали функцию слушателя
-function btnAlert () {
-  alert('Вы нажали кнопку');
-}
+// const par = document.getElementById('unique');
 
-// сказали кнопке что она когда на неё нажимают запускает функцию
-btn.addEventListener('click', btnAlert);
+// const testClass = document.getElementsByClassName('test');
 
+// // * -----------------------------------------------------
+// const coolerPar = document.querySelector('#unique > span');
+
+// const coolerPars = document.querySelectorAll('p');
+
+// const arr = [...coolerPars];
+
+// найти h1, img и span в параграфе
