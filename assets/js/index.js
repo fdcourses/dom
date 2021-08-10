@@ -18,7 +18,7 @@ function updateView() {
   img.setAttribute('src', currentSlide);
 }
 
-const createSliderBtnHandler = (direction = 'next') => {
+const createSliderBtnHandler = (direction) => {
   return function () {
     const newSlide = direction === 'next' ? 'nextSlide' : 'prevSlide';
     slider.currentIndex = slider[newSlide];
@@ -26,10 +26,45 @@ const createSliderBtnHandler = (direction = 'next') => {
   };
 };
 
-prevBtn.addEventListener('click',createSliderBtnHandler('next') );
+prevBtn.addEventListener('click', createSliderBtnHandler('next'));
 
-nextBtn.addEventListener('click',createSliderBtnHandler('prev'));
-
-
+nextBtn.addEventListener('click', createSliderBtnHandler('prev'));
 
 updateView();
+
+function makeCounter() {
+  let name = 0; // замыкание здесь
+
+  return  function getName() {
+    return ++name;
+  };
+}
+
+const increment1 = makeCounter();
+
+
+// создайте функцию makeAdder (m)
+// она возвращает функцию, которая принимает параметр n
+// возвращенная функция должна складывать m и n
+
+// const adder = makeAdder(20);
+// adder(10) // 30
+// adder(100) //130
+
+// const adder2 = makeAdder(0)
+// adder2(0) // 0
+// adder2(500) // 500
+
+function makeAdder(m) {
+  let number = m;
+  return function (n) {
+    number = number + n;
+    return number;
+  }
+}
+//
+const oneLineAdder = (state) => (number) => state += number;
+//
+const adder = makeAdder(20);
+// adder(10) // 30
+// adder(100) //130
