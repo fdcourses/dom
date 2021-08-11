@@ -2,17 +2,12 @@
 
 const btn = document.querySelector('#btn');
 
-function clickHandler(event) {
-  console.dir(event.currentTarget); // тот на ком обработчик
-  console.dir(event.target); // то куда кликнули
-  console.log(event);
+const [btn1, btn2] = document.querySelectorAll('button');
+
+function btnHandler(e) {
+
+  console.log(e.target.textContent);
 }
 
-
-
-btn.addEventListener('click', clickHandler);
-document.body.addEventListener('click', clickHandler);
-
-const mouseEvent = new MouseEvent('click');
-
-btn.dispatchEvent(mouseEvent);
+btn1.addEventListener('click', btnHandler);
+btn2.addEventListener('click', btnHandler);
