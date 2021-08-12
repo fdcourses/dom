@@ -1,13 +1,19 @@
 'use strict';
 
-const btn = document.querySelector('#btn');
-
 const [btn1, btn2] = document.querySelectorAll('button');
 
-function btnHandler(e) {
-
-  console.log(e.target.textContent);
+const firstUser = {
+  name: 'User',
+  lastName: 'Userovich'
 }
 
-btn1.addEventListener('click', btnHandler);
-btn2.addEventListener('click', btnHandler);
+function listener(e) {
+  console.dir(e.currentTarget);
+  alert(`YO this is  ${e.currentTarget}`);
+  // console.dir(e);
+}
+
+btn1.addEventListener('click', listener, true);
+// document.body.addEventListener('click', listener, true);
+// document.addEventListener('click', listener, true);
+// window.addEventListener('click', listener,  true);
