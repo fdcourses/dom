@@ -8,12 +8,9 @@ const firstUser = {
 }
 
 function listener(e) {
-  console.dir(e.currentTarget);
-  alert(`YO this is  ${e.currentTarget}`);
-  // console.dir(e);
+  console.dir(e.target.dataset);
 }
 
-btn1.addEventListener('click', listener, true);
-// document.body.addEventListener('click', listener, true);
-// document.addEventListener('click', listener, true);
-// window.addEventListener('click', listener,  true);
+btn1.addEventListener('click', listener);
+
+btn2.addEventListener('click', listener);
