@@ -1,16 +1,22 @@
 'use strict';
+/*
+  есть див и кнопки с цветами
+  по нажатию на кнопки поменять цвет фона дива 
+  на цвет названия кнопки
+  использьовать дата-* аттрибуты при этим
 
-const [btn1, btn2] = document.querySelectorAll('button');
+*/
 
-const firstUser = {
-  name: 'User',
-  lastName: 'Userovich'
-}
+const btns = document.querySelectorAll('#root > button');
 
 function listener(e) {
-  console.dir(e.target.dataset);
+  const {target: btn} = e;
+  const {dataset : {backgroundColor}} = btn;
+  
+  btn.parentElement.style.backgroundColor = backgroundColor;
 }
 
-btn1.addEventListener('click', listener);
+for(const btn of btns) {
+  btn.addEventListener('click', listener);
+}
 
-btn2.addEventListener('click', listener);
