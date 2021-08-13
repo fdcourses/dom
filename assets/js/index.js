@@ -10,10 +10,8 @@
 const btns = document.querySelectorAll('#root > button');
 
 function listener(e) {
-  const {target: btn} = e;
-  const {dataset : {backgroundColor}} = btn;
-  
-  btn.parentElement.style.backgroundColor = backgroundColor;
+  const {target, target: {dataset : {backgroundColor}}} = e;
+  target.parentElement.style.backgroundColor = backgroundColor;
 }
 
 for(const btn of btns) {
