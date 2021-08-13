@@ -1,4 +1,15 @@
 #root {
   border: 10px solid black;
   padding: 20px;
+  display:  flex;
+  justify-content: space-between;
+}
+
+.createdPar {
+  background-color: gray;
+  padding: 20px;
+}
+
+.textColor {
+  color: limegreen;
 }
