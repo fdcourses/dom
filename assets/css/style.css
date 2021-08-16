@@ -1,15 +1,39 @@
-#root {
-  border: 10px solid black;
-  padding: 20px;
-  display:  flex;
-  justify-content: space-between;
+@import './reset.css';
+
+* {
+  box-sizing: border-box;
 }
 
-.createdPar {
-  background-color: gray;
-  padding: 20px;
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.textColor {
-  color: limegreen;
+.cardWrapper {
+  border: 2px solid black;
+  width: 300px;
+  margin: 10px;
+}
+
+.imgWrapper {
+  width: inherit;
+  height: 300px;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: inherit;
+}
+
+.userCard {
+  text-align: center;
+}
+
+.cardName {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.cardDescription {
 }
