@@ -16,11 +16,14 @@
 }
 
 .imgWrapper {
+  position: relative;
   width: inherit;
   height: 300px;
 }
 
 .img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: inherit;
@@ -36,4 +39,16 @@
 }
 
 .cardDescription {
+}
+
+.initials {
+  position: absolute;
+  inset: 0;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: black;
+  color: white;
 }
