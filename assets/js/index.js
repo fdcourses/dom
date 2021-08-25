@@ -21,17 +21,23 @@ function generateUserCard(userObj) {
   const imgWrapper = document.createElement('div');
   imgWrapper.classList.add('imgWrapper');
 
+  const initails = document.createElement('div');
+  initails.classList.add('initials');
+  initails.textContent = name
+    .split(' ')
+    .map((word) => word[0])
+    .join(' ');
+   
+  initails.style.backgroundColor = stringToColour(name);
+
   const img = document.createElement('img');
   img.classList.add('img');
   img.setAttribute('src', profilePicture);
   img.alt = name;
 
-  img.addEventListener('error', (e) => {
-    const { target } = e;
-    target.style.visibility = 'hidden';
-  });
+  img.addEventListener('error', deleteHandler);
 
-  imgWrapper.append(img);
+  imgWrapper.append(initails, img);
 
   const userName = document.createElement('h2');
   userName.classList.add('cardName');
@@ -39,8 +45,6 @@ function generateUserCard(userObj) {
 
   const cardDescription = document.createElement('p');
   cardDescription.classList.add('cardDescription');
-  // const cardDescriptionText = document.createTextNode(description);
-  // cardDescription.append(cardDescriptionText);
 
   cardDescription.append(document.createTextNode(description));
 
@@ -50,9 +54,31 @@ function generateUserCard(userObj) {
   return userCard;
 }
 
-const testString = "20 Anthony's Restaurant & Pizza";
+/* 
+  HANDLERS 
+*/
+function deleteHandler(e) {
+  const { target } = e;
+  target.style.visibility = 'hidden';
+}
 
-const initails = testString
-  .split(' ')
-  .map((word) => word[0])
-  .join(' ');
+/*
+  UTILS
+*/
+
+function stringToColour(str) {
+  var hash = 0;
+  for (var i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  var colour = '#';
+  for (var i = 0; i < 3; i++) {
+    var value = (hash >> (i * 8)) & 0xFF;
+    colour += ('00' + value.toString(16)).substr(-2);
+  }
+  return colour;
+}
+
+const testString = "Anthony's Restaurant & Pizza";
+
+const initails = testString;
