@@ -5,58 +5,96 @@ const cardsContainer = document.querySelector('#root');
 const userCards = data.map((user) => generateUserCard(user));
 cardsContainer.append(...userCards);
 
-// const userCards = data.map((user) => generateUserCard(user));
-// cardsContainer.append(...userCards);
-
 // userObj - обьект с инфой о пользователе
 function generateUserCard(userObj) {
-  const { name, description, profilePicture } = userObj;
+  const { id, name, description, profilePicture } = userObj;
 
-  const userCard = document.createElement('li');
-  userCard.classList.add('cardWrapper');
-
-  const article = document.createElement('article');
-  article.classList.add('userCard');
-
-  const imgWrapper = document.createElement('div');
-  imgWrapper.classList.add('imgWrapper');
-
-  const initails = document.createElement('div');
-  initails.classList.add('initials');
-  initails.textContent = name
-    .split(' ')
-    .map((word) => word[0])
-    .join(' ');
-   
-  initails.style.backgroundColor = stringToColour(name);
-
-  const img = document.createElement('img');
-  img.classList.add('img');
-  img.setAttribute('src', profilePicture);
-  img.alt = name;
-
+  const img = createElement('img', {
+    classNames: ['img'],
+    attrs: { src: profilePicture, alt: name },
+  });
   img.addEventListener('error', deleteHandler);
 
-  imgWrapper.append(initails, img);
+  const userName = createElement(
+    'h2',
+    { classNames: ['cardName'] },
+    document.createTextNode(name)
+  );
 
-  const userName = document.createElement('h2');
-  userName.classList.add('cardName');
-  userName.textContent = name;
+  const cardDescription = createElement(
+    'p',
+    {
+      classNames: ['cardDescription'],
+    },
+    document.createTextNode(description)
+  );
 
-  const cardDescription = document.createElement('p');
-  cardDescription.classList.add('cardDescription');
+  const initails = createElement(
+    'div',
+    { classNames: ['initials'] },
+    document.createTextNode(
+      name
+        .split(' ')
+        .map((word) => word[0])
+        .join(' ')
+    )
+  );
+  initails.style.backgroundColor = stringToColour(name);
 
-  cardDescription.append(document.createTextNode(description));
+  const imgWrapper = createElement(
+    'div',
+    { classNames: ['imgWrapper'], id },
+    initails,
+    img
+  );
 
-  article.append(imgWrapper, userName, cardDescription);
-  userCard.append(article);
+  const article = createElement(
+    'article',
+    { classNames: ['userCard'] },
+    imgWrapper,
+    userName,
+    cardDescription
+  );
+
+  const userCard = createElement(
+    'li',
+    { classNames: ['cardWrapper', 'test'] },
+    article
+  );
 
   return userCard;
+}
+
+const tagName = 'li';
+const classes = ['cardWrapper', 'class2'];
+const attrs = { alt: 'text' };
+
+function createElement(tagName, options, ...children) {
+  const { classNames = [], attrs = {}, id, onClick = () => {} } = options;
+  const element = document.createElement(tagName);
+  element.classList.add(...classNames);
+
+  const attributesTuples = Object.entries(attrs);
+
+  for (const [key, value] of attributesTuples) {
+    element.setAttribute(key, value);
+  }
+
+  if (id) {
+    element.id = id;
+  }
+
+  element.onclick = onClick;
+
+  element.append(...children);
+
+  return element;
 }
 
 /* 
   HANDLERS 
 */
+
 function deleteHandler(e) {
   const { target } = e;
   target.style.visibility = 'hidden';
@@ -73,12 +111,8 @@ function stringToColour(str) {
   }
   var colour = '#';
   for (var i = 0; i < 3; i++) {
-    var value = (hash >> (i * 8)) & 0xFF;
+    var value = (hash >> (i * 8)) & 0xff;
     colour += ('00' + value.toString(16)).substr(-2);
   }
   return colour;
 }
-
-const testString = "Anthony's Restaurant & Pizza";
-
-const initails = testString;
