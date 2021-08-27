@@ -44,7 +44,7 @@ function logRange(min, max) {
  * @returns {number} сумма чисел от 1 до max
  */
 function increment(number) {
-  // debugger;
+  debugger;
   let result = number;
 
   if (number > 0) {
@@ -105,4 +105,98 @@ function power(number, exp) {
   return exp > 0
     ? number * power(number, exp - 1)
     : 1 / (number * power(number, Math.abs(exp) - 1));
+}
+
+const value = 10000;
+
+const arr = [1,3,4,8,9,15,7,3,10,5];
+
+
+
+const testArr = Array(10000).fill(null).map((abracadabra, i) => i+1);
+
+const testArr1 = Array(1000).fill(null).map((abracadabra, i) => `string${i+1}`);
+
+// O(n)
+function linearSearch(arr, value) {
+
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i] === value) {
+      return true;
+    }
+  }
+
+  return false;
+}
+// O (n^2)
+function createMultiplicationTable (number) {
+  const table = [];
+
+  for(let i =1; i <=  number; i++) {
+    for(let j = 1; j <= number; j++) {
+      table.push(`${i} * ${j} = ${i*j}`);
+    }
+  }
+
+  return table;
+}
+// O (log n)
+function binarySearch(arr, value) {
+
+  let start = 0;
+  let end = arr.length - 1;
+  let middle = Math.round((end + start) / 2);
+  
+  
+  while(true) {
+    if(arr[middle] === value) {
+      return true;
+    }
+
+    if(arr[middle] > value) {
+      end = middle;
+      middle = Math.floor((end + start) / 2);
+    } else if(arr[middle] < value) {
+      start = middle;
+      middle = Math.round((end + start) / 2);
+    } 
+
+    if(start === end && start === middle) {
+      return false;
+    }
+  }
+}
+
+console.time('linear');
+linearSearch(testArr, value);
+console.timeEnd('linear');
+
+console.time('quadro');
+createMultiplicationTable(1000);
+console.timeEnd('quadro');
+
+console.time('binary');
+binarySearch(testArr, 10000);
+console.timeEnd('binary');
+
+let listItem1 = {
+  value : 1,
+  next : listItem2,
+  prev: null,
+}
+
+let listItem2 = {
+  value : 2,
+  next: listItem3,
+  prev: listItem1,
+}
+
+let listItem3 = {
+  value: 3,
+  next: null,
+  prev: listItem2
+}
+
+function test() {
+  test();
 }
