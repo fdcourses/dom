@@ -5,9 +5,13 @@ class Stack {
    * 
    * @param {number} maxSize размер стека
    */
-  constructor(maxSize = 10) {
+  constructor(maxSize = 10, ...elements) {
     this.maxSize = maxSize;
     this._size = 0;
+
+    for(let i = 0; i < elements.length; i++) {
+      this.push(elements[i]);
+    }
   }
 
   push(item) {
@@ -34,4 +38,4 @@ class Stack {
   }
 }
 
-const stack1 = new Stack();
+const stack1 = new Stack(10, 'test', 'test12', '123', false);
