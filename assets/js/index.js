@@ -2,9 +2,17 @@
 
 class Queue {
 
-  constructor() {
+  constructor(...elements) {
     this._tail = 0;
     this._head = 0;
+
+    // for(let i = 0; i < elements.length; i++) {
+    //   this.push(elements[i]);
+    // }
+
+    for(const element of elements) {
+      this.push(element);
+    }
   }
 
   get size() {
@@ -17,7 +25,7 @@ class Queue {
    */
   push(item) {
     this[this._tail++] = item;
-    return this.size
+    return this.size;
   }
 
   /**
@@ -32,9 +40,5 @@ class Queue {
     }
   }
 }
-
-const q = new Queue();
-
-q.push(1);
-q.push(2);
-q.push(3);
+ // сделайте такое создание очереди рабочим
+const q1 = new Queue(1,2,3,5);
