@@ -30,7 +30,7 @@ class Queue {
 
   /**
    * Метод для удаления элемента с начала очереди
-   * @returns {any} удаленный элемент
+   * @returns {any} значение удаленного элемента
    */
   pop() {
     if(this.size > 0) {
@@ -40,5 +40,41 @@ class Queue {
     }
   }
 }
- // сделайте такое создание очереди рабочим
-const q1 = new Queue(1,2,3,5);
+// сделайте функцию которая принимает две очереди
+// и на их основании возвращает одну очередь
+// элементы становятся в новую очередь поочередно
+const q1 = new Queue(1);
+const q2 = new Queue(2,8);
+
+/**
+ * Функция которая принимает две очереди и возяращает 
+ * очередь с поочередно вставленными данными из принятых очередей
+ * @param {Queue} q1 первая очередь
+ * @param {Queue} q2 вторая очередь
+ * @returns {Queue} очередь из двух очередей
+ */
+function mergeQueues (q1,q2) {
+  const resultQueue = new Queue();
+
+  while(q1.size || q2.size) {
+    if(q1.size) {
+      resultQueue.push(q1.pop());
+    }
+
+    if(q2.size) {
+      resultQueue.push(q2.pop());
+    }
+  }
+
+  // for(let i = 0; i !== q1.size + q2.size; ) {
+  //   if(q1.size) {
+  //     resultQueue.push(q1.pop());
+  //   }
+
+  //   if(q2.size) {
+  //     resultQueue.push(q2.pop());
+  //   }
+  // }
+
+  return resultQueue;
+}
