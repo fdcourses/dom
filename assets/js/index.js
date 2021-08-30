@@ -1,52 +1,40 @@
 'use strict';
 
-class Stack {
-  /**
-   * @param {number} maxSize размер стека
-   * @param {any[]} elements массив вносимых при создании в стек элементов
-   */
-  constructor(maxSize = 10, ...elements) {
-    this.maxSize = maxSize;
-    this._size = 0;
+class Queue {
 
-    for (let i = 0; i < elements.length; i++) {
-      this.push(elements[i]);
-    }
+  constructor() {
+    this._tail = 0;
+    this._head = 0;
   }
 
+  get size() {
+    return this._tail - this._head;
+  }
   /**
-   * Внесение в стек предмета
-   * @param {*} item вносимый в стек предмет
-   * @returns {number} размер стека
+   * Метод для добавленя элемента в конец очереди
+   * @param {*} item 
+   * @returns {number} размер очереди
    */
   push(item) {
-    if (this._size >= this.maxSize) {
-      throw new RangeError('Stack overflown');
-    }
-    this[`_${this._size}`] = item;
-    this._size++;
-    return this._size;
+    this[this._tail++] = item;
+    return this.size
   }
+
   /**
-   * Метод для удаления значения из стека
-   * @returns {*} удаленное из стека значения
+   * Метод для удаления элемента с начала очереди
+   * @returns {any} удаленный элемент
    */
   pop() {
-    if (this._size === 0) {
-      return;
+    if(this.size > 0) {
+      const deleted = this[this._head];
+      delete this[this._head++];
+      return deleted;      
     }
-    const deleted = this[`_${this._size - 1}`];
-    delete this[`_${this._size--}`];
-
-    return deleted;
-  }
-  /**
-   * Метод для просмотра верхнего значения в стеке
-   * @returns {*} верхнее значение в стеке
-   */
-  pick() {
-    return this[`_${this._size - 1}`];
   }
 }
 
-const stack1 = new Stack(10, 'test', 'test12', '123', false);
+const q = new Queue();
+
+q.push(1);
+q.push(2);
+q.push(3);
