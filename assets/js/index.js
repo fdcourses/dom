@@ -43,26 +43,35 @@ const vocabulary = new Map([
   ['преимущество', 'advantage'],
   ['стул', 'chair'],
   ['наличка', 'cash'],
-  ["цифробуквенный", 'alphanumerical'],
+  ['цифробуквенный', 'alphanumerical'],
   ['переговоры', 'negotiacions'],
-  ['значительный','significant'],
-  ["кот",'cat'],
+  ['значительный', 'significant'],
+  ['кот', 'cat'],
   ['собака', 'dog'],
   ['слон', 'elephant'],
-  ["язык", 'language']
+  ['язык', 'language'],
 ]);
 
-const stringToTranslate = 'слон значительный получить наличку собака кот цифробуквенный стул';
+const stringToTranslate =
+  'пульверизатор слон значительный получить наличка собака кот цифробуквенный стул';
 
-const string = 'test|not|yet|hello|there';
+const string = 'test|not|yet|hello|there|кот';
 const arrFromStr = string.split('|');
 const reformedStr = arrFromStr.join('$');
-
 
 // создать функцию которая принимает строку на руссокм
 // и возвращает строку на английском
 function translate(str) {
+  let result =[];
+  const keysArr = str.split(' ');
 
+  for (const key of keysArr) {
+    if (vocabulary.has(key)) {
+      result.push(vocabulary.get(key));
+    } else {
+      result.push(key);
+    }
+  }
 
-  return newStr;
+  return result.join(' ');
 }
