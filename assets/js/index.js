@@ -61,17 +61,14 @@ const reformedStr = arrFromStr.join('$');
 
 // создать функцию которая принимает строку на руссокм
 // и возвращает строку на английском
-function translate(str) {
-  let result =[];
-  const keysArr = str.split(' ');
+const translate = (str) =>
+  str
+    .split(' ')
+    .map((key) => (vocabulary.has(key) ? vocabulary.get(key) : key))
+    .join(' ');
 
-  for (const key of keysArr) {
-    if (vocabulary.has(key)) {
-      result.push(vocabulary.get(key));
-    } else {
-      result.push(key);
-    }
-  }
-
-  return result.join(' ');
-}
+// if (vocabulary.has(key)) {
+//   return ;
+// } else {
+//   return ;
+// }
