@@ -30,3 +30,11 @@ const janeMsg = [
 // и будет возвращать все его сообщения
 
 const msgToUsers = new Map();
+
+msgToUsers.set(u1.id, johnMsg);
+msgToUsers.set(u2.id, janeMsg);
+
+
+function getUserMsg({id}) {
+  return msgToUsers.get(id);
+}
