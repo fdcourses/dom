@@ -1,35 +1,68 @@
 'use strict';
 
-const set = new Set();
+const user = {
+  id: 2,
+};
 
-set.add(1);
+const obj = {
+  id: 1,
+  name: 'Test',
+  lastName: 'Test',
+  id: 1000,
+  age: 5,
+  0: false,
+  [user]: 'Hello',
+};
 
-set.add({});
-set.add({});
-set.add({});
+const objEntries = Object.entries(obj);
+const objKeys = Object.keys(obj);
+const objValue = Object.values(obj);
+const objSize = objValue.length;
 
-set.add(2);
-set.add('teste32423423');
-set.add(true);
-set.add([1,2,3]);
+const map = new Map();
 
-set.add('1');
+const arr = [1, 34, 5];
 
-set.delete(true);
+const func = () => {};
 
-set.has(1);
+map.set('id', 1);
+map.set(arr, 'array');
+map.set(func, 'function');
+map.set(1, 1);
+map.set('1', 'number one');
+map.set(user, 'object');
 
-// for(const entry of set.values()) {
-//   console.log(entry);
-// }
+map.set(map, 'lol');
 
-// for(const setEntry of set) {
-//   console.log(setEntry);
-// }
+const value = map.get('1');
+map.delete('1');
+// map.clear();
 
-// есть 2 массива
-const arr1 = [1,2,3,4,5];
-const arr2 = [3,4,7,8,9];
+const vocabulary = new Map([
+  ['получить', 'obtain'],
+  ['преимущество', 'advantage'],
+  ['стул', 'chair'],
+  ['наличка', 'cash'],
+  ["цифробуквенный", 'alphanumerical'],
+  ['переговоры', 'negotiacions'],
+  ['значительный','significant'],
+  ["кот",'cat'],
+  ['собака', 'dog'],
+  ['слон', 'elephant'],
+  ["язык", 'language']
+]);
 
-//получить массив с уникальными значениями из двух верхних массивов
-const unique = [...new Set([...arr1, ...arr2 ])];
+const stringToTranslate = 'слон значительный получить наличку собака кот цифробуквенный стул';
+
+const string = 'test|not|yet|hello|there';
+const arrFromStr = string.split('|');
+const reformedStr = arrFromStr.join('$');
+
+
+// создать функцию которая принимает строку на руссокм
+// и возвращает строку на английском
+function translate(str) {
+
+
+  return newStr;
+}
