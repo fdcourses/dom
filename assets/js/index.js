@@ -38,3 +38,15 @@ msgToUsers.set(u2.id, janeMsg);
 function getUserMsg({id}) {
   return msgToUsers.get(id);
 }
+
+for(const key of msgToUsers.keys()) {
+  console.log(key);
+}
+
+for(const value of msgToUsers.values()) {
+  console.log(value);
+}
+
+for(const value of msgToUsers.entries()) {
+  console.log(value);
+}
