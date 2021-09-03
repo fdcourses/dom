@@ -152,3 +152,8 @@ function stringToColour(str) {
   }
   return colour;
 }
+
+function generateLinks(contacts) {
+  // пройтись мапом выернуть уже готовые элементы ссылок
+  // воспользоватся мапой для определния какую картинку делать
+}
