@@ -56,3 +56,11 @@
 .initials:empty::after {
   content: 'Unknown';
 }
+
+.icon {
+  color: green;
+}
+
+.icon:hover {
+  color: red;
+}
