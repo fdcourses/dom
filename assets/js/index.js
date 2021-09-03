@@ -13,11 +13,11 @@ cardsContainer.append(...userCards);
  * @returns {HTMLLIElement} верстка карточки
  */
 function generateUserCard(userObj) {
-  const { id, name, description, profilePicture } = userObj;
+  const { id, firstName, description, profilePicture } = userObj;
 
   const img = createElement('img', {
     classNames: ['img'],
-    attrs: { src: profilePicture, alt: name , 'data-id' : id},
+    attrs: { src: profilePicture, alt: firstName , 'data-id' : id},
   });
   img.addEventListener('error', deleteHandler);
   img.addEventListener('load', imageLoadHandler);
@@ -25,7 +25,7 @@ function generateUserCard(userObj) {
   const userName = createElement(
     'h2',
     { classNames: ['cardName'] },
-    document.createTextNode(name)
+    document.createTextNode(firstName)
   );
 
   const cardDescription = createElement(
@@ -40,14 +40,14 @@ function generateUserCard(userObj) {
     'div',
     { classNames: ['initials'] },
     document.createTextNode(
-      name
+      firstName
         .trim()
         .split(' ')
         .map((word) => word[0])
         .join(' ')
     )
   );
-  initails.style.backgroundColor = stringToColour(name);
+  initails.style.backgroundColor = stringToColour(firstName);
 
   const imgWrapper = createElement(
     'div',
@@ -70,66 +70,6 @@ function generateUserCard(userObj) {
   );
 
   return userCard;
-}
-
-const tagName = 'li';
-const classes = ['cardWrapper', 'class2', 'flex', 'mainHeading'];
-const attrs = { alt: 'text' , src: './assets/img/logo.png'};
-
-const img = createElement('img');
-
-const test = createElement('div', {} , );
-
-/**
- * Создает HTML элемент
- * @param {string} tagName имя элемента
- * @param {object} options обьект настроек
- * @param {string[]} options.classNames строки с именами CSS классов 
- * @param {object} options.attrs обьект с аттрибутами
- * @param {Function} options.onClick функция обработки события клика
- * @param  {Node[]} children дочерние DOM узлы
- * @returns {HTMLElement} созданный элемент 
- */
-function createElement(tagName, options, ...children) {
-  // debugger;
-  const { classNames = [], attrs = {}, onClick = () => {} } = options;
-
-  const element = document.createElement(tagName);
-  
-  element.classList.add(...classNames);
-
-  const attributesTuples = Object.entries(attrs);
-
-  for (const attribute of attributesTuples) {
-    const [key, value] = attribute;
-    element.setAttribute( key , value);
-  }
-
-  element.onclick = onClick;
-
-  element.append(...children);
-
-  return element;
-}
-
-/* 
-  HANDLERS 
-*/
-
-/**
- * Обработчик для удаления сломынных картинок
- */
-function deleteHandler({ target }) {
-  target.remove();
-}
-
-/**
- * Обрабочик для прикрепления картинки к оббертке
- * @param {Event} e 
- */
-function imageLoadHandler (e) {
-  const {target , target : { dataset: {id}}} = e;
-  document.getElementById(`wrapper${id}`).append(target);
 }
 
 /*
