@@ -2,19 +2,18 @@
  * Создает HTML элемент
  * @param {string} tagName имя элемента
  * @param {object} options обьект настроек
- * @param {string[]} options.classNames строки с именами CSS классов 
+ * @param {string[]} options.classNamesArray массив строк с именами CSS классов 
  * @param {object} options.attrs обьект с аттрибутами
  * @param {Function} options.onClick функция обработки события клика
  * @param  {Node[]} children дочерние DOM узлы
  * @returns {HTMLElement} созданный элемент 
  */
  function createElement(tagName, options, ...children) {
-  // debugger;
-  const { classNames = [], attrs = {}, onClick = () => {} } = options;
+  const { classNamesArray = [''], attrs = {}, onClick = () => {} } = options;
 
   const element = document.createElement(tagName);
   
-  element.classList.add(...classNames);
+  element.classList.add(...classNamesArray);
 
   const attributesTuples = Object.entries(attrs);
 
