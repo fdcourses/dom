@@ -27,6 +27,8 @@
   display: block;
   width: 100%;
   height: inherit;
+  object-fit: cover;
+  object-position: center;
 }
 
 .userCard {
